@@ -15,7 +15,7 @@ let package = Package(
         .package(url: "https://source.skip.tools/skip-fuse-ui.git", "0.0.0"..<"2.0.0"),
         .package(url: "https://source.skip.tools/skip-fuse.git", from: "1.0.0"),
         .package(url: "https://source.skip.tools/skip-model.git", from: "1.0.0"),
-        .package(url: "https://github.com/Skip-Chess/ChessKit.git", branch: "main"),
+        .package(url: "https://github.com/Skip-Chess/ChessKit.git", branch: "develop"),
         .package(url: "https://github.com/Skip-Chess/ChessboardKit.git", branch: "main"),
     ],
     targets: [
