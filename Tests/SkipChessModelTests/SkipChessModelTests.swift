@@ -21,15 +21,4 @@ final class SkipChessModelTests: XCTestCase {
         logger.log("running testSkipChessModel")
         XCTAssertEqual(1 + 2, 3, "basic test")
     }
-
-    func testViewModel() async throws {
-        let vm = ViewModel()
-        vm.items.append(Item(title: "ABC"))
-        XCTAssertFalse(vm.items.isEmpty)
-        XCTAssertEqual("ABC", vm.items.last?.title)
-
-        vm.clear()
-        XCTAssertTrue(vm.items.isEmpty)
-    }
-
 }
