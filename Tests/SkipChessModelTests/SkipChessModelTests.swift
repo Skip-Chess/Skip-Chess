@@ -13,7 +13,7 @@ final class SkipChessModelTests: XCTestCase {
     override func setUp() {
         #if os(Android)
         // needed to load the compiled bridge from the transpiled tests
-        loadPeerLibrary(packageName: "skip-chess", moduleName: "SkipChessModel")
+        loadPeerLibrary(packageName: "Skip-Chess", moduleName: "SkipChessModel")
         #endif
     }
 

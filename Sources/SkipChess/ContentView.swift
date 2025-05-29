@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
-
 import SkipFuseUI
 import SkipChessModel
+import ChessboardKit
 
 enum ContentTab: String, Hashable {
     case welcome, home, settings
@@ -16,7 +16,7 @@ struct ContentView: View {
     var body: some View {
         TabView(selection: $tab) {
             NavigationStack {
-                WelcomeView(welcomeName: $welcomeName)
+                ChessboardView()
             }
             .tabItem { Label("Welcome", systemImage: "heart.fill") }
             .tag(ContentTab.welcome)
@@ -40,21 +40,15 @@ struct ContentView: View {
     }
 }
 
-struct WelcomeView : View {
-    @State var heartBeating = false
-    @Binding var welcomeName: String
+struct ChessboardView : View {
+    @State var chessboardModel = ChessboardModel(fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
 
     var body: some View {
-        VStack(spacing: 0) {
-            Text("Hello [\(welcomeName)](https://skip.tools)!")
-                .padding()
-            Image(systemName: "heart.fill")
-                .foregroundStyle(.red)
-                .scaleEffect(heartBeating ? 1.5 : 1.0)
-                .animation(.easeInOut(duration: 1).repeatForever(), value: heartBeating)
-                .onAppear { heartBeating = true }
-        }
-        .font(.largeTitle)
+        Chessboard(chessboardModel: chessboardModel)
+            .onMove { move, isLegal, from, to, lan, promotionPiece in
+                print("Move: \(lan)")
+            }
+            .frame(width: 300, height: 300)
     }
 }
 

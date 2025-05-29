@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "skip-chess",
+    name: "Skip-Chess",
     defaultLocalization: "en",
     platforms: [.iOS(.v17), .macOS(.v14), .tvOS(.v17), .watchOS(.v10), .macCatalyst(.v17)],
     products: [
@@ -14,16 +14,20 @@ let package = Package(
         .package(url: "https://source.skip.tools/skip.git", from: "1.5.18"),
         .package(url: "https://source.skip.tools/skip-fuse-ui.git", "0.0.0"..<"2.0.0"),
         .package(url: "https://source.skip.tools/skip-fuse.git", from: "1.0.0"),
-        .package(url: "https://source.skip.tools/skip-model.git", from: "1.0.0")
+        .package(url: "https://source.skip.tools/skip-model.git", from: "1.0.0"),
+        .package(url: "https://github.com/Skip-Chess/ChessKit.git", branch: "main"),
+        .package(url: "https://github.com/Skip-Chess/ChessboardKit.git", branch: "main"),
     ],
     targets: [
         .target(name: "SkipChess", dependencies: [
             "SkipChessModel",
-            .product(name: "SkipFuseUI", package: "skip-fuse-ui")
+            .product(name: "SkipFuseUI", package: "skip-fuse-ui"),
+            .product(name: "ChessboardKit", package: "ChessboardKit")
         ], plugins: [.plugin(name: "skipstone", package: "skip")]),
         .target(name: "SkipChessModel", dependencies: [
             .product(name: "SkipFuse", package: "skip-fuse"),
-            .product(name: "SkipModel", package: "skip-model")
+            .product(name: "SkipModel", package: "skip-model"),
+            .product(name: "ChessKit", package: "ChessKit"),
         ], plugins: [.plugin(name: "skipstone", package: "skip")]),
         .testTarget(name: "SkipChessModelTests", dependencies: [
             "SkipChessModel",
