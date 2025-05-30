@@ -42,7 +42,7 @@ struct ContentView: View {
 }
 
 struct ChessboardView : View {
-    @State var chessboardModel = ChessboardModel(fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", allowOpponentMove: true)
+    @State var chessboardModel = ChessboardModel(fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", colorScheme: .blue, allowOpponentMove: true)
 
     var body: some View {
         Chessboard(chessboardModel: chessboardModel)

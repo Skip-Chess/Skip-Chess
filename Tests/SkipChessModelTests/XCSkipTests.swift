@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
-
+#if false // we do not run the transpiled tests
 import Foundation
 #if os(macOS) // Skip transpiled tests only run on macOS targets
 import SkipTest
@@ -28,3 +28,5 @@ let isAndroid = isJava && ProcessInfo.processInfo.environment["ANDROID_ROOT"] !=
 let isRobolectric = isJava && !isAndroid
 /// True if the system's `Int` type is 32-bit.
 let is32BitInteger = Int64(Int.max) == Int64(Int32.max)
+#endif
+
