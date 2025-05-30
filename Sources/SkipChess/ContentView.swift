@@ -2,6 +2,7 @@
 import SkipFuseUI
 import SkipChessModel
 import ChessboardKit
+import ChessKit
 
 enum ContentTab: String, Hashable {
     case welcome, home, settings
@@ -41,14 +42,21 @@ struct ContentView: View {
 }
 
 struct ChessboardView : View {
-    @State var chessboardModel = ChessboardModel(fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
+    @State var chessboardModel = ChessboardModel(fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", allowOpponentMove: true)
 
     var body: some View {
         Chessboard(chessboardModel: chessboardModel)
             .onMove { move, isLegal, from, to, lan, promotionPiece in
-                print("Move: \(lan)")
+                logger.log("Move: \(lan)")
+                if !isLegal {
+                    logger.log("Illegal move: \(lan)")
+                    return
+                }
+
+                chessboardModel.game.make(move: move)
+                chessboardModel.setFen(FenSerialization.default.serialize(position: chessboardModel.game.position), lan: lan)
             }
-            .frame(width: 300, height: 300)
+            //.frame(width: 300, height: 300)
     }
 }
 

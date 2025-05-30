@@ -6,3 +6,5 @@
 -dontwarn java.awt.**
 -keep class * implements com.sun.jna.** { *; }
 -keep class skip.chess.** { *; }
+-keep class chessboard.kit.** { *; }
+

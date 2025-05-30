@@ -17,6 +17,7 @@ let package = Package(
         .package(url: "https://source.skip.tools/skip-model.git", from: "1.0.0"),
         .package(url: "https://github.com/Skip-Chess/ChessKit.git", branch: "develop"),
         .package(url: "https://github.com/Skip-Chess/ChessboardKit.git", branch: "main"),
+        .package(url: "https://github.com/Skip-Chess/Stockfish.git", branch: "main"),
     ],
     targets: [
         .target(name: "SkipChess", dependencies: [
@@ -28,6 +29,7 @@ let package = Package(
             .product(name: "SkipFuse", package: "skip-fuse"),
             .product(name: "SkipModel", package: "skip-model"),
             .product(name: "ChessKit", package: "ChessKit"),
+            .product(name: "Stockfish", package: "Stockfish"),
         ], plugins: [.plugin(name: "skipstone", package: "skip")]),
         .testTarget(name: "SkipChessModelTests", dependencies: [
             "SkipChessModel",
